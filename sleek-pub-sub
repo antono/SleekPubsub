@@ -1,0 +1,15 @@
+#!/bin/sh
+
+CONFIG=config.ini
+
+case "$1" in
+	start)
+		echo "Starting SleekPubSub..."
+		python3 publish_subscribe.py -c $CONFIG --daemon
+		;;
+	stop)
+		echo "Stopping SleekPubSub..."
+		kill `cat pubsub.pid`
+		;;
+	restart)
+esac
