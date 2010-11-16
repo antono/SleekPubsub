@@ -551,7 +551,7 @@ class BaseNode(object):
 		return self.affiliations
 	
 	def notifyItem(self, event, filterjid=None):
-		print "-------- NOTYF ITEM", self.xmpp.jid, type(self.xmpp.jid)
+		print("-------- NOTYF ITEM", self.xmpp.jid, type(self.xmpp.jid))
 		if event.hasNode(self.name):
 			return False
 		event.addNode(self.name)
@@ -608,7 +608,7 @@ class BaseNode(object):
 			if not event.hasJid(jid):
 				event.addJid(jid)
 				msg['to'] = jid
-				print "WHAT THE HELL IS", mto, type(mto)
+				print("WHAT THE HELL IS", mto, type(mto))
 				msg['from'] = mto or self.xmpp.jid
 				self.xmpp.send(msg)
 		for parent in self.collections:

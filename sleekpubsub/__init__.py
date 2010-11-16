@@ -57,7 +57,7 @@ class NodeCache(object):
 				self[node].save()
 	
 	def addNode(self, name, klass, node=None):
-		print "Loading %s as %s" % (node, klass)
+		print("Loading", node, " as ", klass)
 		self.allnodes[name] = klass
 		if isinstance(node, BaseNode):
 			self.cache.append(name)
@@ -426,24 +426,24 @@ class PublishSubscribe(object):
 		self.xmpp.send(iq)
 	
 	def subscribeNode(self, node, jid, who=None, to=None):
-		print "subscribe node"
+		print("subscribe node")
 		if node not in self.nodes:
 			if self.config['settings']['node_creation'] == 'createonsubscribe':
 				self.createNode(node, config=None, who=who.full)
 			else:
-				print "no create on subscribe"
+				print("no create on subscribe")
 				return False
 		if self.nodes[node].config.get('pubsub#expire') == 'presence':
-			print "presence expire"
+			print("presence expire")
 			if not self.xmpp.roster.has_key(jid.bare) or not self.xmpp.roster[jid.bare]['presence'].has_key(jid.resource):
-				print "could not subscribe to pubsub#expire", jid.full, self.xmpp.roster
+				print("could not subscribe to pubsub#expire", jid.full, self.xmpp.roster)
 				return False
 			else:
-				print "subscribing"
+				print("subscribing")
 				if str(jid) not in self.presence_expire:
 					self.presence_expire[str(jid)] = []
 				self.presence_expire[str(jid)].append(node)
-				print self.presence_expire
+				print(self.presence_expire)
 		if who is not None:
 			who = who.full
 		return self.nodes[node].subscribe(jid.full, who, to=to)
