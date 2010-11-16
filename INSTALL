@@ -5,7 +5,7 @@ sqlite3 installed
 
 Database
 --------
-sqlite3 pubsub.db < cat sqliteschema.sql
+sqlite3 pubsub.db < sqliteschema.sql
 
 XMPP Server
 -----------
